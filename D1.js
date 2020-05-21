@@ -180,3 +180,7 @@ function countingValleys(n, s) {
     }
 steps = 'UDDDUDUU'
 console.log(countingValleys(8 , steps))    
+let sum = x+ y;
+let x=6;
+let y=5;
+console.log(sum)
