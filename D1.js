@@ -117,5 +117,66 @@ console.log(chunk(1,2))
 console.log(chunk(1,3))
 console.log(chunk(1,4))
 
+// function range1(start, end) {
+//     var ans = [];
+//     for (let i = start; i <= end; i++) {
+//         ans.push(i);
+//     }
+//     return ans;
+// }
+// console.log(range1(2,4))
+// function range2(start, end) {
+//     return (new Array(end - start + 1)).fill(undefined).map((_, i) => i + start);
+// }
+// console.log(range2(2,4))
+
+function socks(n)
+{
+    Arr3 = [];
+    for (let i=1 ; i<=n ;i++)
+        {
+            Arr3.push(i)
+
+        }
+        Arr3[0]= 3;
+        return Arr3;
+}
+
+console.log(socks(5))
+var arrObject = new Array("val1","val2");
+arrObject.val1 = 'name'
+console.log(arrObject)
 
 
+function sockMerchant(n, ar) {
+    let counter = 0;
+    let  count = 0;
+    //
+    for (let i = 0; i < ar.length; i++) {
+        count = 1;
+        //
+        for (let j = i+1 ; j < ar.length; j++) {
+            if (ar[i] == ar[j]) {
+                count++;
+            }
+        }
+
+        if (count % 2 == 0) {
+            counter++;
+        }
+    }
+
+    return counter;
+}
+
+let array = [10,20,20,10,10,30,50,10,20]
+console.log(sockMerchant(9,array))
+
+function countingValleys(n, s) {
+    let newArray = s.split("");
+    let arrayLength = newArray.length ; 
+    let numberOfValleys = n / arrayLength;
+    return numberOfValleys;
+    }
+steps = 'UDDDUDUU'
+console.log(countingValleys(8 , steps))    

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <h1>Start from your previous Spotify Exercise.</h1>
+
+    <p>
+      The goal of this exercise is to fetch data from the API instead of having
+      them "wired up" in the page.
+    </p>
+
+    <p>
+      Generate automatically 3 lists based on the "search API" response
+    </p>
+    <ul>
+      <li></li>
+      <li>es.: https://deezerdevs-deezer.p.rapidapi.com/search?q=metallica</li>
+      <li>es.: https://deezerdevs-deezer.p.rapidapi.com/search?q=behemoth</li>
+    </ul>
+
+    <h3>
+      Load them during page load, and create the collections based on the API
+      response.
+    </h3>
+
+    <h4>
+      [EXTRA] Make the central part of the page scrollable both horizontally and
+      vertically
+    </h4>
+
+    <h4>
+        [EXTRA] Add a "List albums" button. When pressed, he should create and display a list of albums on the page
+    </h4>
+
+    <h4>
+        [EXTRA] Add a "Count Unique" button. When pressed, he should log the number of unique albums on the page
+    </h4>
+
+    <h4>
+      [EXTRA] Add a search button to change the API query
+    </h4>
+    <script>
+        function loadAlbum()
+        {
+            fetch("https://deezerdevs-deezer.p.rapidapi.com/album/119606", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+		"x-rapidapi-key": "b41254000bmshb62e314b3254f24p1dac92jsn6f1fc3174939"
+	}
+})
+.then(response => { response.json()
+	console.log(response);
+})
+.catch(err => {
+	console.log(err);
+});
+        }
+        </script>
+  </body>
+</html>
