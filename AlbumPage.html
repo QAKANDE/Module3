@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify</title>
+    <!-- Jquery -->
+    <script src="jquery-1.10.2.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" type="text/css" href="Style-Spotify.css"> -->
+    <style>
+     
+    
+     body{
+ background-color: rgb(19,18,18);
+ font-family: 'nunito', serif;
+font-size: 1em;
+
+}
+    .main{
+        margin-left: 200px;
+    }
+
+    .main h1{
+        color:white;
+        margin-left:65px;
+        margin-bottom: 20px;
+    }        
+   .wrapper {
+    width: 100%;
+    align-items: stretch;
+    }
+    .main #anchorWrapper a:hover {
+    border-bottom: 3px solid green;     
+    color: rgba(241, 234, 234, 0.89);
+    text-decoration: none;
+    font-size: larger;
+} 
+.active{
+    border-bottom: 2px solid green;     
+    color: rgba(241, 234, 234, 0.89);
+    font-size: larger;
+}
+    #sidebar {
+    min-width: 200px;
+    max-width: 200px;
+    min-height:80vh;
+    background: black;
+    color: #fff;
+    position:fixed;
+    
+}
+
+.footerSB{
+    min-height: 40px;
+    position: absolute;
+    bottom: 0;
+}  
+
+.footerSB > a{
+  color:grey;
+}
+
+.footerSB > a:hover{
+  text-decoration: none;
+  color:#fff;
+}
+
+
+    #sidebar .sidebar-header {
+    padding: 20px;
+    
+}
+
+    #sidebar ul.components {
+    padding: 20px 0;
+    
+}
+
+    #sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+    #sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+    #sidebar ul li a:hover {
+    color: rgba(241, 234, 234, 0.89);
+    text-decoration: none;
+
+}
+
+    #sidebar ul li> a, a[aria-expanded="true"] {
+    color:grey;
+    
+}
+.wrapper #sidebar .sideBarBottomBtn .bttn{
+    border-radius: 25px;
+    border: white 2px solid;
+    width: 120px;
+}
+#sidebar ul li a:hover {
+    color: rgba(241, 234, 234, 0.89);
+    font-size: larger;
+    border-left: 3px solid green;
+    text-decoration: none;
+}
+    ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    }
+
+    /* .card-deck {
+        height:180px;
+        width:200px;
+        
+    } */
+
+    .card {
+       
+        text-align: center;
+        background-color: rgb(19, 18, 18);
+        color: white;
+        position: relative; 
+            
+      
+    }
+    /* .card :hover{
+      transform: scale(2.5);
+    }  */
+
+    /* .card-img-top {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    } */
+
+    .card-text{
+      color:grey;
+    }
+    /* .podcastcard .col .card img:hover{
+      transform: scale(1.1);
+      width: 250px;
+    } */
+ 
+.infos-content {
+  padding-top: 1.8rem;
+}
+/* 
+.infos-content > span {
+  display: block;
+} */
+
+.card:hover .infos-container {
+  opacity: 1;
+  transform: translateY(5px);
+  font-size: larger;
+  font-weight:bolder;
+}
+.card:hover img{
+  /* transform: scale(1.1); */
+  width: 190px;
+}
+    .play-icon {
+  position: absolute;
+  color: white;
+  left: -200px;
+  bottom: 20px;
+  background-color: #4caf50;
+  padding: 0.9rem;
+  width: 50px;
+  border-radius: 40px;
+  height: 50px;
+  transform: translateX(0);
+  opacity: 0;
+  transition: opacity 0.3s ease 0.3s, transform 0.4s ease 0.1s;
+  animation: ourGradient 4s ease infinite;
+  z-index: 3;
+}
+.card:hover .play-icon {
+  opacity: 1;
+  transform: translateX(calc(200px + 15px + 0.9rem));
+}
+.play-icon i {
+  position: relative;
+  left: 1px;
+  top: -1px;
+}
+
+
+
+    footer{
+      background-color: rgb(53, 52, 52);
+      position:sticky;
+      left: 0;
+      bottom: 0;
+      max-width:100%;
+      max-height:auto;
+      height: 100%;
+    }
+
+    footer .btn{
+      color:grey;
+    }
+    .container1{
+      justify-content: space-between;
+      font-size: 15px;
+      color:rgb(136, 136, 134);
+    }
+
+    .container1 img{
+      margin: 0;
+      position: relative;
+      top: 60%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+}
+    .slider:hover {
+      opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      width: 100px;
+      height: 5px;
+      border-radius: 5px;
+      background: grey;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .jumbo-bottom {
+      padding-top:50px;
+    }
+
+    .btn-md{
+      background-color: transparent;
+      border:none;
+      overflow: hidden;
+      color:rgb(212, 208, 205);
+      font-weight:bold;
+      font-size: 14px;
+      outline:none !important;
+    }
+    
+    .btn-sm{
+      background-color: transparent;
+      border:none;
+      color:grey;
+      outline:none !important;
+
+    }
+
+    .btn-md:hover{
+      color: white;
+      border-bottom: 3px solid green;
+    }
+
+    .dropdown-item{
+      color: grey;
+      text-align: left;
+    }
+
+
+    .dropdown-item:hover{
+      color:white;
+      background-color: transparent;
+    }
+    .p{
+      margin-top: 100px;
+    }
+
+    @media (max-width: 500px) {
+  #sidebar {
+    display: none;
+  }
+}
+@media (max-width: 1024px) {
+  #sidebar {
+    display: none;
+  }
+}
+@media (max-width: 1024px) {
+  footer {
+   height: auto;
+  }
+}
+@media (max-width: 1024px) {
+  .main > h1 {
+    font-size: 50px;
+  }
+}
+ /* @media (max-width: 1024px) {
+  .main .row {
+    height: 90vh;
+     min-height: 327px;
+     min-width: 400px;
+     max-height:400px;
+  } 
+}  */
+@media (max-width: 1024px) {
+  .main {
+    width: 100%;
+    height: 100%;
+   
+  } 
+} 
+
+
+@media (max-width:500px) {
+  .main {
+    margin-left: 0;
+    width: auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 979px) {
+  main{
+    width: 700px;
+  }
+ }
+
+/* @media (min-width: 501px) {
+  .jumbotron .btn-sm {
+    display: none;
+  }
+  } */
+
+/* @media (max-width: 400px) {
+  .main {
+    margin-left: 0;
+  }
+} */
+</style>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        
+        <nav id="sidebar"> 
+            <div class="sidebar-header">
+                <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png" style="object-fit: cover; width:150px; ">
+            </div>
+    
+            <ul class="list-unstyled components">
+                <li>
+                     <a href="../ArtistPageResponsive.html"><i class="fa fa-home"></i> Home</a>
+                </li>
+               
+                <li>
+                    <a href="#"><i class="fa fa-search"></i> Search</a>
+                </li>
+                <li>
+                    <a href="../Album.html"><i class="fa fa-stream"></i> Your Library</a>
+                </li>
+            </ul>
+            <id class="footerSB">
+                <div class="row">
+                  <div class="col">
+                    <div class="sideBarBottomBtn d-flex flex-column">
+                      <button type="button" onclick="signup()" class="btn btn-primary btn-sm bttn mx-4" style="background-color: white; color: black;">SIGN UP</button>
+                      <button type="button" class="btn btn-primary btn-sm bttn mt-3 mx-4" style="background-color: grey; color: white;">LOG IN</button>
+                    </div>
+                    <div class="sideBarBottomAnchor d-flex flex-column">
+                        <span class="mx-4"><a href="#" style="color:white; font-size: 0.9em;">Cookie</a> || <a href="#"style="color:white; font-size: 0.9em;">Privacy policy</a></span> 
+                    </div>
+                  </div>
+                </div>
+            </id>
+        </nav>
+    
+    </div>
+    <div class = "main">
+        <div id="anchorWrapper" class="d-flex justify-content-center">
+          <nav class="navbar navbar-expand-lg navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">TRENDING<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-3" href="podcast.html">PODCAST</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-3" href="Genre.html">MOODS AND GENRES</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-3" href="newrealeases.html">NEW RELEASES</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-3" href="discover.html">DISCOVER</a>
+                </li>
+              </ul>
+            </div>
+            </nav>
+          </div>
+          <h1>Welcome to Strivify</h1>
+          <div class="container" id="songs">
+  
+          </div>
+      </div>
+
+    <!-- For overall footer- whole page -->
+    
+    <footer style="background-color: rgb(53, 52, 52); position:sticky;">
+		<div class="container-fluid " id="mediaPlayer">
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-3 mt-md-3">
+					<div class=" align-items-center d-none " id="musicInfo">
+						<div class="d-flex align-items-center w-100 py-2">
+							<img src="" class="image-fluid mr-2" style="max-width: 40px; "alt="">	
+							<div class="d-flex justify-content-start flex-column">
+								<span class="">Song Name</span>
+								<small class="">Artists Name</small>
+							</div>
+							<i class="fa fa-heart ml-3"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-md-12 col-lg-6 justify-content-between align-items-center pt-2 pb-2 mt-lg-3 mt-md-3">
+					<div class="w-100 d-flex align-items-baseline">
+						<small class="mr-2">30.00</small>
+						<div class="progress w-100 mb-2" style="height:0.1rem;">
+						 <div class="progress-bar w-75"  style="background-color:#93A0B0;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<small class="ml-2">45.00</small>
+					  </div>
+					<div class="my-2 d-flex justify-content-center align-items-center">
+						<i class="fa fa-lg fa-random align-self-center"></i>
+						<i class="fa fa-2x fa-step-backward ml-4"></i>
+						<i class="fa fa-3x fa-play-circle ml-4"></i>
+						<i class="fa fa-2x fa-step-forward ml-4"></i>
+						<i class="fa fa-lg fa-redo ml-4"></i>
+					</div>
+				
+				</div>
+				<div class="col-sm-6 col-md-3 col-lg-3 d-flex  justify-content-end align-items-center ">
+					<p class="mr-3"><i class="fa fa-list"></i></i></p>
+					<p class="mr-3"><i class="fa fa-desktop"></i></i></p>
+					
+					<div class="w-50 d-flex align-items-baseline">
+						<p class="mr-2 "><i class="fa fa-volume-up"></i></p>
+						<div class="progress w-100 mb-2" style="height:0.1rem;">
+						 <div class="progress-bar w-75"  style="background-color:#93A0B0;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						
+					  </div>
+							
+				</div>
+			</div>
+        </div>
+        </footer>
+      <script>
+          window.onload=function() {
+            const urlParams = new URLSearchParams(window.location.search); 
+            const artist = urlParams.get("artist") 
+            // let title = document.querySelector('.art-title')
+            // title.innerText=artist.toUpperCase()
+            displayAlbums(artist)
+
+            
+          }
+         
+
+           function displayAlbums(artist_name) {
+  fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${artist_name}`, {
+		"method": "GET",
+		"headers": {
+			"x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+			"x-rapidapi-key": "84d2e1bc2amsh0bcbc81dd32f547p1526bajsncbac98b453bc"
+				}
+		})
+		.then(response => response.json()).then(parsedJSON => { 
+            let main = document.querySelector('.main')
+               let songs = document.querySelector('#songs')
+               let newRow = document.createElement("div")
+                    newRow.classList.add("row")
+                    newRow.classList.add("no-gutters")
+        console.log(parsedJSON)
+        const filtered =[]
+				const map =new Map();
+									for(const item of parsedJSON.data) {
+										if(!map.has(item.album.title)) {
+											map.set(item.album.title, true)
+											filtered.push({
+                        id:item.album.id,
+												title:item.album.title,
+												cover: item.album.cover_medium,
+												artist:item.artist.name
+											})
+										}
+									}
+        
+        console.log(filtered)
+        filtered.forEach(album => {
+          newRow.innerHTML +=  //we add all the songs as a JS card
+                        
+                        `
+                          <div class="card col-sm-3 col-md-2" >
+                            <div class="image-wrapper albumsName">
+                  <a href="playlist.html?albumId=${album.id}"> <img  src="${album.cover}"   class="image-fluid img-thumbnail border-0 p-0 rounded-0"  alt="album ">
+                   <i   class="fa fa-play-circle d-none"></i></a>
+               </div>
+                              <div class="card-body">
+                               <p class="card-text"><span class="mt-2 text-center " style="color: whitesmoke; font-weight: 500;">${album.title}</span></p>
+                               <span style="color: #93A0B0;">${album.artist}</span>
+                              </div>
+                          </div>
+                          
+                          `  
+        });
+        // songs.innerHTML +=`<h2 style="color: white;" >${artist} </h2> <hr>`
+              songs.appendChild(newRow)
+    })
+ }
+      </script>
+    <script src="https://kit.fontawesome.com/5e49adb972.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
