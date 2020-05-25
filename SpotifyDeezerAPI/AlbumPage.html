@@ -115,12 +115,23 @@ font-size: 1em;
     padding-left: 30px !important;
     }
 
-    /* .card-deck {
-        height:180px;
-        width:200px;
-        
-    } */
-
+  .container .jumbotron .d-flex .jumbotronBtn .btn{
+    width:130px;
+        margin-right: 5px;
+        border-radius: 30px;
+        font-size: 13px;
+  }
+  .container .jumbotron .d-flex a:hover{
+    border-bottom: 3px solid green;     
+    color: rgba(241, 234, 234, 0.89);
+    text-decoration: none;
+    font-size: larger;
+  }
+  .active{
+    border-bottom: 2px solid green;     
+    color: rgba(241, 234, 234, 0.89);
+    font-size: larger;
+}
     .card {
        
         text-align: center;
@@ -414,10 +425,50 @@ font-size: 1em;
             </div>
             </nav>
           </div>
-          <h1>Welcome to Strivify</h1>
+          <div class="container">
+          <div class="jumbotron jumbotron-cover-image d-flex flex-column justify-content-center align-items-center rounded-0" style="background-color:rgb(53, 52, 52);">
+                
+            <div class="d-flex flex-column justify-content-center align-items-center mt-4">
+              <small class="mb-2">33,000,575 MONTHLY LISTENERS</small>
+              <h2 class="art-title"><b></b></h2>
+              <div class="d-lg-flex mt-2 d-sm-flex text-center jumbotronBtn">
+                <button  class="btn  w-75 rounded-pill mx-sm-4 mr-lg-3 mb-2" style="background-color: green;" >PLAY</button>
+                <button class="btn  w-75 rounded-pill  mb-2"  >FOLLOW</button>
+              </div>
+            </div>
+
+            <nav class="navbar navbar-expand-lg navbar-light mt-auto jumbotron-navbar ">
+             
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            
+             <div class="d-flex align-items-center  mt-auto ">
+                  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav m-auto ">
+                      <li class="nav-item active mr-3">
+                        <a class="nav-link  " href="#">OVERVIEW <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item mr-3">
+                        <a class="nav-link " href="#">RELATED ARTISTS</a>
+                      </li>
+                     
+                      <li class="nav-item mr-3">
+                        <a class="nav-link " href="#" >ABOUT</a>
+                      </li>
+                     
+                    </ul>
+                   
+                  </div>
+             </div>
+            </nav>
+            
+        </div>
           <div class="container" id="songs">
   
           </div>
+          </div>
+
       </div>
 
     <!-- For overall footer- whole page -->
@@ -493,6 +544,7 @@ font-size: 1em;
 		})
 		.then(response => response.json()).then(parsedJSON => { 
             let main = document.querySelector('.main')
+            let jumbotron = document.querySelector('.jumbotron-cover-image')
                let songs = document.querySelector('#songs')
                let newRow = document.createElement("div")
                     newRow.classList.add("row")
@@ -510,14 +562,16 @@ font-size: 1em;
 												artist:item.artist.name
 											})
 										}
-									}
-        
+                  }
         console.log(filtered)
         filtered.forEach(album => {
-          newRow.innerHTML +=  //we add all the songs as a JS card
+    
+     
+          newRow.innerHTML +=  
                         
                         `
-                          <div class="card col-sm-3 col-md-2" >
+                
+                          <div class="card col-sm-3 col-md-2 mx-2" >
                             <div class="image-wrapper albumsName">
                   <a href="playlist.html?albumId=${album.id}"> <img  src="${album.cover}"   class="image-fluid img-thumbnail border-0 p-0 rounded-0"  alt="album ">
                    <i   class="fa fa-play-circle d-none"></i></a>
@@ -528,7 +582,8 @@ font-size: 1em;
                               </div>
                           </div>
                           
-                          `  
+                          `
+           
         });
         // songs.innerHTML +=`<h2 style="color: white;" >${artist} </h2> <hr>`
               songs.appendChild(newRow)

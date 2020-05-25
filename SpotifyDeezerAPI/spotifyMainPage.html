@@ -414,7 +414,6 @@ font-size: 1em;
           </div>
           </nav>
         </div>
-        <h1>Welcome to Strivify</h1>
         <div class="container" id="songs">
 
         </div>
@@ -464,7 +463,7 @@ font-size: 1em;
               </div>
               
               </div>
-                
+
           </div>
         </div>
           </div>
@@ -494,15 +493,15 @@ font-size: 1em;
                     newRow.classList.add("no-gutters")
                loadedSongs.forEach(song => {
                  
-                    newRow.innerHTML +=  //we add all the songs as a JS card
+                    newRow.innerHTML += 
                         
                       `
                         <div class="card col-sm-3 col-md-2" >
-                           <a href="AlbumPage.html?artist=${song.artist.name}">
+                          <a href="AlbumPage.html?artist=${song.artist.name}">
                             <img src="${song.album.cover_xl}" class="card-img-top" alt="...">
                             </a>
                             <div class="card-body">
-                               <a href="AlbumPage.html?artist=${song.artist.name}"> <p class="card-text">${song.title}</p></a>
+                               <a href="AlbumPage.html?artist=${song.artist.name}"> <p class="card-text" style="color:white;">${song.title}</p></a>
                             </div>
                         </div>
                         
