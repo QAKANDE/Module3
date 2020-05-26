@@ -429,8 +429,8 @@ font-size: 1em;
           <div class="jumbotron jumbotron-cover-image d-flex flex-column justify-content-center align-items-center rounded-0" style="background-color:rgb(53, 52, 52);">
                 
             <div class="d-flex flex-column justify-content-center align-items-center mt-4">
-              <small class="mb-2">33,000,575 MONTHLY LISTENERS</small>
               <h2 class="art-title"><b></b></h2>
+              <small id = "followers" class="mb-2"></small>
               <div class="d-lg-flex mt-2 d-sm-flex text-center jumbotronBtn">
                 <button  class="btn  w-75 rounded-pill mx-sm-4 mr-lg-3 mb-2" style="background-color: green;" >PLAY</button>
                 <button class="btn  w-75 rounded-pill  mb-2"  >FOLLOW</button>
@@ -532,8 +532,6 @@ font-size: 1em;
 
             
           }
-         
-
            function displayAlbums(artist_name) {
   fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${artist_name}`, {
 		"method": "GET",
@@ -544,13 +542,16 @@ font-size: 1em;
 		})
 		.then(response => response.json()).then(parsedJSON => { 
             let main = document.querySelector('.main')
-            let jumbotron = document.querySelector('.jumbotron-cover-image')
+            let artistName = document.querySelector('.art-title')
+            let followers = document.querySelector('#followers')
+            let jumbotron = document.querySelector('.jumbotron')
                let songs = document.querySelector('#songs')
                let newRow = document.createElement("div")
                     newRow.classList.add("row")
                     newRow.classList.add("no-gutters")
         console.log(parsedJSON)
         const filtered =[]
+        songs.appendChild(jumbotron)
 				const map =new Map();
 									for(const item of parsedJSON.data) {
 										if(!map.has(item.album.title)) {
@@ -564,10 +565,10 @@ font-size: 1em;
 										}
                   }
         console.log(filtered)
+        artistName.innerHTML+=filtered[0].artist
+        // followers.innerHTML +=filtered[0].nb_fan
         filtered.forEach(album => {
-    
-     
-          newRow.innerHTML +=  
+               newRow.innerHTML +=  
                         
                         `
                 
