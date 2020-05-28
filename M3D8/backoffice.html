@@ -51,6 +51,26 @@
       </div>
   </body>
   <script>
+    let id;
+    window.onload = async function()
+    {
+      id = new URLSearchParams (window.location.search).get("id")
+      if(id){
+        let response = await fetch(url+id , {
+          headers: new Headers ({
+              "content-Type":"application/json",
+              "Authorization":"Basic dXNlcjIzOjJhazlFNXFxQkt2VjJ3a3k="
+          }),
+        })
+        let data = await response.json();
+        console.log(data)
+      document.querySelector('#name').value = data.name
+      document.querySelector('#description').value = data.description
+      document.querySelector('#brand').value = data.brand
+      document.querySelector('#imageURL').value = data.imageUrl
+      document.querySelector('#price').value = data.price
+    }
+    }
     function handleForm()
       {
           event.preventDefault();
@@ -66,8 +86,14 @@
             price: document.querySelector("#price").value,
             imageUrl:document.querySelector("#imageURL").value
         }
-        let response = await postProducts(products);
-        console.log(response)
+        let response;
+        if(id)
+        {
+         response = await handleEditProduct(id,products)
+        }
+        else{ 
+          response = await postProducts(products);
+        }
         if(response.ok)
     {
         window.alert("Success")

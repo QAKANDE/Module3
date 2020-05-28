@@ -5,9 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
+  <style>
+    body{
+      background-color: black;
+    }
+    .card :hover{
+      width: 300px;
+    }
+    .card{
+      background-color: #5cdb95 !important;
+    }
+    .card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+.navbar #navbarNav ul li a{
+  color: #5cdb95 ;
+  font-weight: bolder;
+}
+.navbar .navbar-brand{
+  color:#5cdb95 ;
+  font-weight: bolder;
+}
+p{
+  color: #379683;
+  font-weight: bolder;
+}
+h3{
+  color: #8ee4af;
+}
+  </style>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Strive Market Place </a>
+        <a class="navbar-brand" href="#">QKICKS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,9 +53,9 @@
           </ul>
         </div>
       </nav>
-      <h1>Strive market place</h1>
+      <h3 class="text-center">This is QKICKS,where you find your dream shoe</h3>
       <div class="container d-flex justify-content-center">
-        <div class="row row-cols-1 row-cols-md-2">
+        <div class="row">
             </div>
       </div>
   </body>
@@ -40,16 +71,17 @@
             let row = document.querySelector('.row')
             let currentProduct = products[i]
             row.innerHTML+=
-            `<div class="col mb-4">
-            <div class="card">
-            <img src="${currentProduct.imageUrl}" class="card-img-top img-fluid" alt="product image">
-            <div class="card-body">
-        <h5 class="card-title">${currentProduct.brand}</h5>
-        <p class="card-text">${currentProduct.price}</p>
-        <p class="card-text">${currentProduct.description}</p>
-      </div>
-        </div>
-        </div>`
+        
+        ` <div class="card col-sm-3 col-md-2 col-lg-3 text-white bg-success mb-3" style="max-width: 18rem;">
+                <img src="${currentProduct.imageUrl}"" class="card-img-top" alt="..."></img>
+                <div class="card-body">
+               <a href="details.html?id=${currentProduct._id}" style="color:white;"> <h5 class="card-title">${currentProduct.brand}</h5> <a>
+                <p class="card-text">
+                    Price - ${currentProduct.price}
+                </p>
+             
+              </div>
+              </div>`
         wrapper.appendChild(row)
           }
         }

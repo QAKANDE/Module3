@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Strive Market Place </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="backoffice.html">Back Office</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <h1 class="text-center">Strive market place</h1>
+      <div class="container d-flex justify-content-center">
+        <div class="row row-cols-1 row-cols-md-2">
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+    <button type="button" class="btn btn-primary" onclick="editProduct()">EDIT</button>
+    <button type="button" class="btn btn-danger mx-3" onclick="deleteProduct()">DELETE</button>
+    </div>
+  </body>
+  <script>
+      let id;
+      window.onload = async function()
+      {
+          id = new URLSearchParams(window.location.search).get("id")
+          getDetails(id)
+      }
+      async function getDetails(id)
+      {
+          let response = await fetch(`https://striveschool.herokuapp.com/api/product/${id}` , {
+          method:"GET" ,
+        headers: new Headers({
+            'Content-Type':'application/json',
+            "Authorization":"Basic dXNlcjIzOjJhazlFNXFxQkt2VjJ3a3k="
+        }),
+    });
+          let data = await response.json()
+          let container = document.querySelector('.container')
+          let row = document.querySelector('.row')
+          row.innerHTML +=
+        `
+        <div class="col">
+            <img src="${data.imageUrl}" alt="..."></img>
+        </div>
+        <div class="col">
+            <p>${data.brand}</p>
+            <p>${data.description}</p>
+        </div>
+        `
+        container.appendChild(row)
+      }
+
+    async function deleteProduct()
+      {
+        let response = await handleDeleteProduct(id)
+        if(response.ok)
+        {
+            alert("Success")
+            window.location.assign("index.html")
+        }
+        else{
+            alert("Something went wrong")
+        }
+      }
+
+      async function editProduct()
+      {
+          window.location.assign("backoffice.html?id=" +id)
+      }
+  </script>
+  <script src="helpers.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
