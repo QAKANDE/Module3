@@ -4,10 +4,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+      body{
+        background-color: black;
+      }
+      .navbar #navbarNav ul li a{
+  color: #5cdb95 ;
+  font-weight: bolder;
+}
+.navbar .navbar-brand{
+  color:#5cdb95 ;
+  font-weight: bolder;
+}
+      label{
+        color:#5cdb95 ;
+      }
+    </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Strive Market Place </a>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: black;">
+        <a class="navbar-brand" href="#">Qkicks</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,7 +61,7 @@
                 <input type="number" class="form-control" id="price" placeholder="Enter product price">
               </div>
               <div class="form-group d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" style="background-color: #5cdb95; border: none;color: white;font-weight: bolder;">Submit</button>
               </div> 
         </form>
       </div>
@@ -54,7 +70,7 @@
     let id;
     window.onload = async function()
     {
-      id = new URLSearchParams (window.location.search).get("id")
+      id = new URLSearchParams(window.location.search).get("id")
       if(id){
         let response = await fetch(url+id , {
           headers: new Headers ({
