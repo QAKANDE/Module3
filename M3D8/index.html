@@ -9,9 +9,9 @@
     body{
       background-color: black;
     }
-    .card :hover{
+    /* .card :hover{
       width: 300px;
-    }
+    } */
     .card{
       background-color: #5cdb95 !important;
     }
@@ -37,7 +37,7 @@ h3{
 }
   </style>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg" style="background-color: black;">
         <a class="navbar-brand" href="#">QKICKS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -53,6 +53,7 @@ h3{
           </ul>
         </div>
       </nav>
+      <hr>
       <h3 class="text-center">This is QKICKS,where you find your dream shoe</h3>
       <div class="container d-flex justify-content-center">
         <div class="row">
@@ -79,7 +80,7 @@ h3{
                 <p class="card-text">
                     Price - ${currentProduct.price}
                 </p>
-             
+                <button type="button" class="btn btn-info" style="color:#379683; background-color: black; border:none;">Add to cart</button>
               </div>
               </div>`
         wrapper.appendChild(row)

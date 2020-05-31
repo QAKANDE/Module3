@@ -18,7 +18,7 @@ async function postProducts(productsToBeUploaded)
     try{
     let response = await fetch(url , {
         method:"POST",
-        body: JSON.stringify(productsToBeUploaded) , 
+        body: JSON.stringify(productsToBeUploaded), 
         headers: new Headers ({
             "content-Type":"application/json",
             "Authorization":"Basic dXNlcjIzOjJhazlFNXFxQkt2VjJ3a3k="
@@ -29,8 +29,7 @@ async function postProducts(productsToBeUploaded)
 } catch(err)
 {
     alert("err")
-}
-   
+}  
 }
 
 async function handleDeleteProduct(id)

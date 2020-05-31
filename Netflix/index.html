@@ -79,11 +79,11 @@
         font-size: 0.6em;
       }
 
-      .col img {
+      .column img {
         transition: transform 0.2s;
       }
 
-      .col img:hover {
+      .column img:hover {
         transform: scale(1.1);
       }
       .column {
@@ -96,8 +96,11 @@
   clear: both;
   display: table;
 }
-       .no-js #loader { display: none;  }
-		.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
     </style>
     <title>QFlix</title>
   </head>
@@ -105,7 +108,8 @@
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">
-          <img src="Assets/icon.png" style="width: 100px; height: 75px;" />
+          QFlix
+          <!-- <img src="Assets/icon.png" style="width: 100px; height: 75px;" /> -->
         </a>
         <button
           class="navbar-toggler"
@@ -166,28 +170,29 @@
               >
                 Genres &nbsp;
               </button>
-              <div
-                class="dropdown-menu bg-dark"
-                aria-labelledby="dropdownMenuButton"
-              >
+              <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item text-white bg-dark" href="#">Action</a>
                 <a class="dropdown-item text-white bg-dark" href="#">Comedy</a>
-                <a class="dropdown-item text-white bg-dark" href="#">Drama</a>
-                <a class="dropdown-item text-white bg-dark" href="#"
-                  >Thriller</a
-                >
+                <a class="dropdown-item text-white bg-dark" href="#">Thriller</a>
               </div>
             </div>
           </div>
         </div>
         <div class="container">
+          <h2>Quadri's Netflix</h2>
           <h4>Action</h4>
         <div class="row actionrow">
           
         </div>
-        <h4>Comedy</h4>
-        <div class="row comedyrow">
+        <h4 class="mt-4">Comedy</h4>
+        <div class="row comedyrow mt-2">
           
         </div>
+        <h4 class="mt-4">Drama</h4>
+        <div class="row dramarow">
+          
+        </div>
+
         </div>
         <footer>
           <div class="row text-center mt-5">
@@ -286,34 +291,24 @@
       </div>
     </div>
     <script>
+   
       window.onload = function () {
-        let imgs = document.querySelectorAll(".col.mb-2");
-        for (let x = 0; x < imgs.length; x++) {
-          imgs[x].addEventListener("mouseenter", function (event) {
-            imgs[x].style.zIndex = 2;
-          });
-          imgs[x].addEventListener("mouseleave", function (event) {
-            setTimeout(() => {
-              imgs[x].style.zIndex = 1;
-            }, 200);
-          });
-        }
         getMovies()
         getComedyMovies()
+        getDramaMovies()
       };
 
       async function getMovies()
       {
           let movies = await handleGetMovie()
-          console.log(movies)
+          console.log("action",movies)
           let wrapper = document.querySelector('.container-fluid')
           let actionRow = document.querySelector('.actionrow')
           for (i=0 ; i<movies.length ; i++)
           {
               let currentMovie = movies[i]
-              console.log(currentMovie.imageUrl)
               actionRow.innerHTML+=
-            `<div class="column " style="width:100%>
+            `<div class="column" style="width:100%>
            <a href="details.html?id=${currentMovie._id}"> 
             <a href="details.html?id=${currentMovie._id}"><img class="card-image-top" src="${currentMovie.imageUrl}" alt="movie picture" /> </a>
           </div>
@@ -323,13 +318,12 @@
         async function getComedyMovies()
       {
           let comedyMovies = await handleGetComedyMovie()
-          console.log(comedyMovies)
+          console.log("comedy",comedyMovies)
           let wrapper = document.querySelector('.container-fluid')
           let comedyRow = document.querySelector('.comedyrow')
           for (i=0 ; i<comedyMovies.length ; i++)
           {
               let currentMovie = comedyMovies[i]
-              console.log(currentMovie.imageUrl)
               comedyRow.innerHTML+=
             `<div class="column " style="width:100%>
            <a href="details.html?id=${currentMovie._id}"> 
@@ -338,15 +332,28 @@
               `
           }
         }
-        $(window).load(function() {
-			$("#loader").animate({
-				top: -200
-			}, 1500);
-		});
+
+        async function getDramaMovies()
+        {
+          let dramaMovies = await handleGetDramaMovie()
+          console.log("drama",dramaMovies)
+          let wrapper = document.querySelector('.container-fluid')
+          let dramaRow = document.querySelector('.dramarow')
+          for (i=0 ; i<dramaMovies.length ; i++)
+          {
+              let currentMovie = dramaMovies[i]
+              dramaRow.innerHTML+=
+            `<div class="column mt-2" style="width:100%>
+           <a href="details.html?id=${currentMovie._id}"> 
+            <a href="details.html?id=${currentMovie._id}"><img class="card-image-top" src="${currentMovie.imageUrl}" alt="movie picture" /> </a>
+          </div>
+              `
+          }
+        }
     </script>
     <script src="helpers.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-    <script src="https://github.com/Modernizr/Modernizr/raw/master/modernizr.js"></script>
+ 
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

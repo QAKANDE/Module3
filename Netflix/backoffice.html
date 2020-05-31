@@ -308,6 +308,12 @@
       document.querySelector('#description').value = data.description
       document.querySelector('#category').value = data.category
       document.querySelector('#imageURL').value = data.imageUrl
+      let button = document.querySelector('.btn')
+      button.innerText = "Update"
+        button.addEventListener('click', async function()
+        {
+          response = await handleEditMovie(id,movies)
+        })
     }
   }
       async function handleForm()
@@ -328,9 +334,11 @@
         if(id)
         {
          response = await handleEditMovie(id,movies)
+        
         }
-        else{ 
-          response = await postMovies(movies);
+        else
+        {
+         response = await handlePostMovie(movies);
         }
         if(response.ok)
     {
@@ -339,7 +347,7 @@
         console.log(response)
     }
     else{
-        window.alert("Something is wrong")
+        window.alert("Something is wrg")
     }
     }
     </script>
