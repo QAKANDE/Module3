@@ -2,7 +2,7 @@ const url = "https://striveschool.herokuapp.com/api/product/";
 
 async function getProducts()
 {
-    let response = await fetch(url , {
+    let response = await fetch(url, {
         method:"GET" ,
         headers: new Headers({
             'Content-Type':'application/json',

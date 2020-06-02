@@ -56,36 +56,59 @@ h3{
       <hr>
       <h3 class="text-center">This is QKICKS,where you find your dream shoe</h3>
       <div class="container d-flex justify-content-center">
+        <div class="spinner-border mt-5" role="status">
+          <span class="sr-only">Loading...</span>
+      </div>
         <div class="row">
-            </div>
+        </div>
       </div>
   </body>
+  <script src="index.js"></script>
   <script>
+     
+    let response
+     let cart = new shoppingCart()
       window.onload = async function()
       {
-          const wrapper = document.querySelector('.container')
-          const products = await getProducts() 
-              console.log(products)
-          for (i=0 ; i<products.length ; i++)
+        const wrapper = document.querySelector('.container')
+        response = await getProducts() 
+        let spinner = document.querySelector(".spinner-border")
+        spinner.classList.toggle("d-none")
+        console.log(response)
+          for (i=0 ; i<response.length ; i++)
           {
               let wrapper = document.querySelector('.container')
             let row = document.querySelector('.row')
-            let currentProduct = products[i]
+            let currentProduct = response[i]
             row.innerHTML+=
         
         ` <div class="card col-sm-3 col-md-2 col-lg-3 text-white bg-success mb-3" style="max-width: 18rem;">
                 <img src="${currentProduct.imageUrl}"" class="card-img-top" alt="..."></img>
                 <div class="card-body">
-               <a href="details.html?id=${currentProduct._id}" style="color:white;"> <h5 class="card-title">${currentProduct.brand}</h5> <a>
+               <a href="details.html?id=${currentProduct._id}"target="_blank" style="color:white;"> <h5 class="card-title">${currentProduct.brand}</h5> <a>
                 <p class="card-text">
                     Price - ${currentProduct.price}
                 </p>
-                <button type="button" class="btn btn-info" style="color:#379683; background-color: black; border:none;">Add to cart</button>
+                <button type="button" class="btn btn-info" style="color:#379683; background-color: black; border:none;" id="${currentProduct._id}" onclick="buyNow(event)" >Add to cart</button>
               </div>
               </div>`
-        wrapper.appendChild(row)
-          }
+              wrapper.appendChild(row)
+            }
         }
+        async function buyNow(event)
+        {
+          response = await getProducts(event.target.id)
+          for(i=0; i<response.length;i++)
+          {
+            let data = response[i]
+            console.log(data)
+          }
+          cart.add(data)
+          console.log(cart)
+            // cart.printShoppingCart()
+        }
+
+
       
   </script>
     <script src="helpers.js"></script>
